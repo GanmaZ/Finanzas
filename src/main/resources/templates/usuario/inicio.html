@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>hola funciona?</h1>
+
+	<div>
+		<form th:action="@{/logout}" method="post">
+			<button class="button" type="submit">Cerrar sesion</button>
+		</form>
+	</div>
+</body>
+</html>
