@@ -26,7 +26,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario user = userRepository.findByUsuario(username);
+		Usuario user = userRepository.findByUserName(username);
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
@@ -34,7 +34,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(role.getRol()));
 		}
 
-		return new User(user.getUsuario(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
+		return new User(user.getUserName(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
 	}
 
 }

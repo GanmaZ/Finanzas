@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" type="text/css" href="static/css/estilos.css"
+	th:href="@{/css/estilos.css}">
+</head>
+<body>
+	<form class="formulario" th:action="@{/usuarios/guardar}"
+		th:object="${usuario}" method="post">
+
+		<h1>Registrate</h1>
+		<div class="contenedor">
+
+			<div class="input-contenedor">
+				<i class="fas fa-user icon"></i> <input type="text"
+					th:field="*{userName}" class="form-control"
+					placeholder="Nombre de Usuario">
+			</div>
+
+			<div class="input-contenedor">
+				<i class="fas fa-key icon"></i> <input type="password"
+					th:field="*{password}" class="form-control"
+					placeholder="Contraseña">
+
+			</div>
+			<div class="input-contenedor">
+				<i class="fas fa-envelope icon"></i> <input type="text"
+					th:field="*{email}" class="form-control"
+					placeholder="Correo Electronico">
+
+			</div>
+			<div class="input-contenedor">
+				<i class="fas fa-user icon"></i> <input type="text"
+					th:field="*{nombres}" class="form-control"
+					placeholder="Nombres Completos">
+			</div>
+
+
+			<input type="submit" value="Registrar" class="button">
+
+			<p>Al registrarte, aceptas nuestras Condiciones de uso y Política
+				de privacidad.</p>
+			<p>¿Ya tienes una cuenta?</p>
+			<div align="center">
+				<a class="link" href="../login.html">Iniciar Sesion</a>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

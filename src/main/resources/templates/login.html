@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head >
+<head>
 <meta charset="utf-8">
 <title>Login</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<link rel="stylesheet" type="text/css" href="static/css/estilos.css"
+	th:href="@{/css/estilos.css}">
 </head>
-<body >
-	
-	<div>
-		<h1 align="center">Login</h1>
-	</div>
+<body>
+	<form class="formulario" th:action="@{/login}" method="post">
 
-	<div class="container" align="center">
-		<div class="card-body" align="center">
-			<form th:action="@{/login}" method="post">
-				<div class="col-sm-6">
-					<input type="text" name="username" id="username"
-						class="form-control" placeholder="Ingrese su usuario" autofocus
-						required />
-				</div>
-				<br>
-				<div class="col-sm-6">
-					<input type="password" name="password" id="password"
-						class="form-control" placeholder="Ingrese su clave" required />
-				</div>
-				<br>
-				<div class="col-sm-6">
-					<input type="submit" class="btn btn-lg btn-dark btn-block"
-						value="Ingresar" />
-				</div>
-			</form>
+		<div>
+			<h1 align="center">Login</h1>
 		</div>
-	</div>
+
+		<div class="input-contenedor">
+			<i class="fas fa-envelope icon"></i> <input type="text"
+				name="username" id="username" class="form-control"
+				placeholder="Ingrese su usuario" autofocus required />
+		</div>
+		<br>
+		<div class="input-contenedor">
+			<i class="fas fa-key icon"></i> <input type="password"
+				name="password" id="password" class="form-control"
+				placeholder="Ingrese su clave" required />
+		</div>
+		<br>
+		<div class="col-sm-6">
+			<input type="submit" class="button" value="Login" />
+			<p>Al registrarte, aceptas nuestras Condiciones de uso y Política
+				de privacidad.</p>
+			<p>¿No tienes una cuenta?</p>
+
+		</div>
+		<div align="center">
+			<a class="link" th:href="@{/usuarios/nuevo}">Registrate</a>
+		</div>
+	</form>
 </body>
 </html>
