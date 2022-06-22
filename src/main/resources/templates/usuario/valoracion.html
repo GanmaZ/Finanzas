@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Valoracion de Bonos</title>
+</head>
+<body background="/images/banner-img.jpg">
+	<header th:replace="master/master :: header"></header>
+	<br>
+	<div>
+		<h1 align="center">Valoracion de Bonos</h1>
+	</div>
+	<br>
+	<div class="container ">
+		<form th:action="@{/bonos/guardar}" th:object="${bono}" method="post">
+			<div class="col-sm-2">
+				<label class="form-label">Valor Nominal:</label> <input
+					type="number" th:field="*{ValorNominal}" class="form-control"
+					placeholder="Digite el Valor Nominal del bono" required="required"></input>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-2">
+					<label class="form-label">Tasa Cupon:</label>
+					<div class="input-group">
+						<input type="number" th:field="*{TasaCupon}" class="form-control"
+							placeholder="Digite la Tasa Cupon del bono" required="required"></input>
+						<div class="input-group-append">
+							<span class="input-group-text">%</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<label class="form-label">Periodo de la Tasa Cupon:</label> <select
+						name="selectType" class="form-control"
+						th:field="*{PeriodoTasaCupon}">
+						<option value="Anual" selected>Anual</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="col-sm-2">
+				<label class="form-label">Periodo de Pago:</label> <select
+					name="selectType" class="form-control" th:field="*{PeriodoPago}">
+					<option value="mensual" selected>Mensual</option>
+					<option value="semestral" selected>Semestral</option>
+					<option value="anual" selected>Anual</option>
+				</select>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2">
+					<label class="form-label">Vencimiento:</label> <input type="number"
+						th:field="*{Vencimiento}" class="form-control"
+						placeholder="Digite el vencimiento del bono" required="required"></input>
+				</div>
+				<div class="col-sm-2">
+					<label class="form-label">Periodo de Vencimiento:</label> <select
+						name="selectType" class="form-control"
+						th:field="*{PeriodoVencimiento}">
+						<option value="Anual" selected>Años</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<div class="col-sm-5">
+				<input type="submit" value="Valorar" class="btn btn-dark"></input>
+			</div>
+			<br>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

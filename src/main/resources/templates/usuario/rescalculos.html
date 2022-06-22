@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Valoracion de Bonos</title>
+</head>
+<body background="/images/banner-img.jpg">
+	<header th:replace="master/master :: header"></header>
+	<br>
+	<div>
+		<h1 align="center">Valoracion de Bonos</h1>
+	</div>
+	<br>
+	<div class="container text-center">
+		<table class="table table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">Periodos</th>
+					<th scope="col">Capital o Principal</th>
+					<th scope="col">Amortizacion Principal</th>
+					<th scope="col">Intereses</th>
+					<th scope="col">Cuota</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="flujo: ${listaflujos}">
+					<td th:text="${flujo.Periodo}"></td>
+					<td th:text="${flujo.Capital}"></td>
+					<td th:text="${flujo.Amortizacion}"></td>
+					<td th:text="${flujo.Interes}"></td>
+					<td th:text="${flujo.Cuota}"></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

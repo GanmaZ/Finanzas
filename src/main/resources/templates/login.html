@@ -11,34 +11,45 @@
 	th:href="@{/css/estilos.css}">
 </head>
 <body>
-	<form class="formulario" th:action="@{/login}" method="post">
+	<div>
+		<form class="formulario" th:action="@{/login}" method="post">
 
-		<div>
-			<h1 align="center">Login</h1>
-		</div>
+			<div>
+				<h1 align="center">Login</h1>
+			</div>
 
-		<div class="input-contenedor">
-			<i class="fas fa-envelope icon"></i> <input type="text"
-				name="username" id="username" class="form-control"
-				placeholder="Ingrese su usuario" autofocus required />
-		</div>
-		<br>
-		<div class="input-contenedor">
-			<i class="fas fa-key icon"></i> <input type="password"
-				name="password" id="password" class="form-control"
-				placeholder="Ingrese su clave" required />
-		</div>
-		<br>
-		<div class="col-sm-6">
-			<input type="submit" class="button" value="Login" />
-			<p>Al registrarte, aceptas nuestras Condiciones de uso y Política
-				de privacidad.</p>
-			<p>¿No tienes una cuenta?</p>
+			<div class="input-contenedor">
+				<i class="fas fa-envelope icon"></i> <input type="text"
+					name="username" id="username" class="form-control"
+					placeholder="Ingrese su usuario" autofocus required />
+			</div>
+			<br>
+			<div class="input-contenedor">
+				<i class="fas fa-key icon"></i> <input type="password"
+					name="password" id="password" class="form-control"
+					placeholder="Ingrese su clave" required />
+			</div>
+			<br>
+			<div class="col-sm-6">
+				<input type="submit" class="button" value="Login" />
+				<p>Al registrarte, aceptas nuestras Condiciones de uso y
+					Política de privacidad.</p>
+				<p>¿No tienes una cuenta?</p>
 
-		</div>
-		<div align="center">
-			<a class="link" th:href="@{/usuarios/nuevo}">Registrate</a>
-		</div>
-	</form>
+			</div>
+			<div align="center">
+				<a class="link" th:href="@{/usuarios/nuevo}">Registrate</a>
+			</div>
+		</form>
+	</div>
+	<br>
+	<div align="center" class="col-sm-6">
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text="${success}" style="color: white;"></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text="${error}" style="color: white;"></div>
+		<div class="alert alert-info" th:if="${info != null}"
+			th:text="${info}" style="color: white;"></div>
+	</div>
 </body>
 </html>

@@ -6,5 +6,6 @@ public interface IUsuarioService {
 	
 	public void insert(Usuario usuario);
 	
+	
 
 }
