@@ -45,7 +45,7 @@ public class BonoServiceImpl implements IBonoService {
 			float tasacuponsem = (bono.getTasaCupon() / 100) / 2;
 			int periodsem = (int) bono.getVencimiento() * 2;
 			float flujo[][] = new float[5][periodsem];
-			int aux = 0;
+			int aux = 1;
 
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < periodsem; j++) {
@@ -84,7 +84,7 @@ public class BonoServiceImpl implements IBonoService {
 			for (int j = 0; j < periodsem; j++) {
 
 				Flujo flu = new Flujo();
-				flu.setPeriodo(flujo[0][j]);
+				flu.setPeriodo((int)flujo[0][j]);
 				flu.setCapital(flujo[1][j]);
 				flu.setAmortizacion(flujo[2][j]);
 				flu.setInteres(flujo[3][j]);
@@ -99,7 +99,7 @@ public class BonoServiceImpl implements IBonoService {
 			float tasacuponmen = (bono.getTasaCupon() / 100) / 12;
 			int periodmen = (int) bono.getVencimiento() * 12;
 			float flujo[][] = new float[5][periodmen];
-			int aux = 0;
+			int aux = 1;
 
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < periodmen; j++) {
@@ -137,7 +137,7 @@ public class BonoServiceImpl implements IBonoService {
 			for (int j = 0; j < periodmen; j++) {
 
 				Flujo flu = new Flujo();
-				flu.setPeriodo(flujo[0][j]);
+				flu.setPeriodo((int)flujo[0][j]);
 				flu.setCapital(flujo[1][j]);
 				flu.setAmortizacion(flujo[2][j]);
 				flu.setInteres(flujo[3][j]);
@@ -149,7 +149,7 @@ public class BonoServiceImpl implements IBonoService {
 			}
 		} else {
 			float flujo[][] = new float[5][(int) bono.getVencimiento()];
-			int aux = 0;
+			int aux = 1;
 
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < bono.getVencimiento(); j++) {
@@ -187,7 +187,7 @@ public class BonoServiceImpl implements IBonoService {
 			for (int j = 0; j < bono.getVencimiento(); j++) {
 
 				Flujo flu = new Flujo();
-				flu.setPeriodo(flujo[0][j]);
+				flu.setPeriodo((int)flujo[0][j]);
 				flu.setCapital(flujo[1][j]);
 				flu.setAmortizacion(flujo[2][j]);
 				flu.setInteres(flujo[3][j]);
@@ -199,6 +199,7 @@ public class BonoServiceImpl implements IBonoService {
 			}
 		}
 	
+		
 
 	}
 

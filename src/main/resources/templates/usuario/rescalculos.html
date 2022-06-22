@@ -7,9 +7,30 @@
 <body background="/images/banner-img.jpg">
 	<header th:replace="master/master :: header"></header>
 	<br>
-	<div>
-		<h1 align="center">Valoracion de Bonos</h1>
+	<div class="container text-center">
+		<table class="table table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">ValorNominal</th>
+					<th scope="col">TasaCupon(%)</th>
+					<th scope="col">PeriodoPago</th>
+					<th scope="col">Vencimiento(Años)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bon: ${listabono}">
+					<td th:text="${bon.ValorNominal}"></td>
+					<td><a th:text="${bon.TasaCupon}"></a>&nbsp;<a
+						th:text="${bon.PeriodoTasaCupon}"></a></td>
+					<td th:text="${bon.PeriodoPago}"></td>
+					<td th:text="${bon.Vencimiento}"></td>
+
+				</tr>
+			</tbody>
+		</table>
 	</div>
+
+
 	<br>
 	<div class="container text-center">
 		<table class="table table-primary">
@@ -23,7 +44,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="flujo: ${listaflujos}">
+				<tr th:each="flujo: ${listaFlujos}">
 					<td th:text="${flujo.Periodo}"></td>
 					<td th:text="${flujo.Capital}"></td>
 					<td th:text="${flujo.Amortizacion}"></td>

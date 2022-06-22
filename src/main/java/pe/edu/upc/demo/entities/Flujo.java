@@ -17,7 +17,7 @@ public class Flujo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int IdFlujo;
 	@Column(name = "Periodo", nullable = false)
-	private float Periodo;
+	private int Periodo;
 	@Column(name = "Capital", nullable = false)
 	private float Capital;
 	@Column(name = "Amortizacion", nullable = false)
@@ -36,7 +36,7 @@ public class Flujo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Flujo(int idFlujo, float periodo, float capital, float amortizacion, float interes, float cuota, Bono bono) {
+	public Flujo(int idFlujo, int periodo, float capital, float amortizacion, float interes, float cuota, Bono bono) {
 		super();
 		this.IdFlujo = idFlujo;
 		this.Periodo = periodo;
@@ -55,11 +55,11 @@ public class Flujo {
 		IdFlujo = idFlujo;
 	}
 
-	public float getPeriodo() {
+	public int getPeriodo() {
 		return Periodo;
 	}
 
-	public void setPeriodo(float periodo) {
+	public void setPeriodo(int periodo) {
 		Periodo = periodo;
 	}
 

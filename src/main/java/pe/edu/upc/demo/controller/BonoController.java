@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.demo.entities.Bono;
+import pe.edu.upc.demo.repositories.IBonoRepository;
+import pe.edu.upc.demo.repositories.IFlujoRepository;
 import pe.edu.upc.demo.serviceinterface.IBonoService;
 
 @Controller
@@ -19,6 +21,14 @@ public class BonoController {
 
 	@Autowired
 	private IBonoService bService;
+	
+	@Autowired
+	private IFlujoRepository fRepository;
+	
+	@Autowired
+	private IBonoRepository bRepository;
+	
+	private Bono bono;
 
 	@GetMapping("/nuevo")
 	public String NewBono(Model model) {
@@ -33,6 +43,7 @@ public class BonoController {
 		if (binRes.hasErrors()) {
 			return "/usuario/valoracion";
 		} else {
+			bono = objbono;
 			bService.insert(objbono);
 			return "redirect:/bonos/calcular";
 		}
@@ -51,7 +62,8 @@ public class BonoController {
 	@RequestMapping("calcular")
 	public String calcuBonos(Model model) {
 		try {
-			model.addAttribute("listaFlujos", bService.list());
+			model.addAttribute("listabono", bRepository.findByidBono(bono.getIdBono()));
+			model.addAttribute("listaFlujos", fRepository.findByBono(bono.getIdBono()));
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
