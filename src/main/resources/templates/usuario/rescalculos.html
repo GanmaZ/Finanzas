@@ -29,8 +29,6 @@
 			</tbody>
 		</table>
 	</div>
-
-
 	<br>
 	<div class="container text-center">
 		<table class="table table-primary">
@@ -55,7 +53,24 @@
 			</tbody>
 		</table>
 	</div>
+	<br>
+	<div class="container text-center">
+		<table class="table table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">TIR(%)</th>
+					<th scope="col">VAN</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="val: ${listaValoracion}">
+					<td th:text="${val.Tir}"></td>
+					<td th:text="${val.Van}"></td>
 
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.upc.demo.entities.Bono;
 import pe.edu.upc.demo.repositories.IBonoRepository;
 import pe.edu.upc.demo.repositories.IFlujoRepository;
+import pe.edu.upc.demo.repositories.IValoracionRepository;
 import pe.edu.upc.demo.serviceinterface.IBonoService;
 
 @Controller
@@ -27,6 +28,9 @@ public class BonoController {
 	
 	@Autowired
 	private IBonoRepository bRepository;
+	
+	@Autowired
+	private IValoracionRepository vRepository;
 	
 	private Bono bono;
 
@@ -64,6 +68,7 @@ public class BonoController {
 		try {
 			model.addAttribute("listabono", bRepository.findByidBono(bono.getIdBono()));
 			model.addAttribute("listaFlujos", fRepository.findByBono(bono.getIdBono()));
+			model.addAttribute("listaValoracion", vRepository.findByValoracion(bono.getIdBono()));
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
