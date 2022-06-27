@@ -13,6 +13,13 @@
 	<br>
 	<div class="container ">
 		<form th:action="@{/bonos/guardar}" th:object="${bono}" method="post">
+
+			<div class="col-sm-2">
+				<label class="form-label">Nombre del Bono:</label> <input
+					type="text" th:field="*{NombreBono}" class="form-control"
+					placeholder="Nombre de su bono" required="required"></input>
+			</div>
+
 			<div class="col-sm-2">
 				<label class="form-label">Valor Nominal:</label> <input
 					type="number" th:field="*{ValorNominal}" class="form-control"
@@ -25,7 +32,8 @@
 					<label class="form-label">Tasa Cupon:</label>
 					<div class="input-group">
 						<input type="number" th:field="*{TasaCupon}" class="form-control"
-							placeholder="Digite la Tasa Cupon del bono" required="required" step="any" ></input>
+							placeholder="Digite la Tasa Cupon del bono" required="required"
+							step="any"></input>
 						<div class="input-group-append">
 							<span class="input-group-text">%</span>
 						</div>
@@ -62,6 +70,28 @@
 						th:field="*{PeriodoVencimiento}">
 						<option value="Anios" selected>Años</option>
 					</select>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<label class="form-label">Costo de Oportunidad:</label>
+				<div class="input-group">
+					<input type="number" th:field="*{CostoOportunidad}"
+						class="form-control" placeholder="Digite su costo de Oportunidad"
+						required="required" step="any"></input>
+					<div class="input-group-append">
+						<span class="input-group-text">%</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<label class="form-label">Tasa de Negociacion :</label>
+				<div class="input-group">
+					<input type="number" th:field="*{TasaNegociacion}"
+						class="form-control" placeholder="Digite su tasa de negociacion"
+						required="required" step="any"></input>
+					<div class="input-group-append">
+						<span class="input-group-text">%</span>
+					</div>
 				</div>
 			</div>
 			<br>

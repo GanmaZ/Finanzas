@@ -17,6 +17,9 @@ public class Bono {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int IdBono;
 
+	@Column(name = "NombreBono", nullable = false)
+	private String NombreBono;
+
 	@Column(name = "ValorNominal", nullable = false)
 	private float ValorNominal;
 
@@ -35,6 +38,12 @@ public class Bono {
 	@Column(name = "PeriodoVencimiento", nullable = false)
 	private String PeriodoVencimiento;
 
+	@Column(name = "CostoOportunidad", nullable = false)
+	private float CostoOportunidad;
+
+	@Column(name = "TasaNegociacion", nullable = false)
+	private float TasaNegociacion;
+
 	@ManyToOne
 	@JoinColumn(name = "IdUsuario", nullable = false)
 	private Usuario usuario;
@@ -44,16 +53,20 @@ public class Bono {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bono(int idBono, float valorNominal, float tasaCupon, String periodoTasaCupon, String periodoPago,
-			float vencimiento, String periodoVencimiento, Usuario usuario) {
+	public Bono(int idBono, String nombreBono, float valorNominal, float tasaCupon, String periodoTasaCupon,
+			String periodoPago, float vencimiento, String periodoVencimiento, float costoOportunidad,
+			float tasaNegociacion, Usuario usuario) {
 		super();
 		this.IdBono = idBono;
+		this.NombreBono = nombreBono;
 		this.ValorNominal = valorNominal;
 		this.TasaCupon = tasaCupon;
 		this.PeriodoTasaCupon = periodoTasaCupon;
 		this.PeriodoPago = periodoPago;
 		this.Vencimiento = vencimiento;
 		this.PeriodoVencimiento = periodoVencimiento;
+		this.CostoOportunidad = costoOportunidad;
+		this.TasaNegociacion = tasaNegociacion;
 		this.usuario = usuario;
 	}
 
@@ -63,6 +76,14 @@ public class Bono {
 
 	public void setIdBono(int idBono) {
 		IdBono = idBono;
+	}
+
+	public String getNombreBono() {
+		return NombreBono;
+	}
+
+	public void setNombreBono(String nombreBono) {
+		NombreBono = nombreBono;
 	}
 
 	public float getValorNominal() {
@@ -111,6 +132,22 @@ public class Bono {
 
 	public void setPeriodoVencimiento(String periodoVencimiento) {
 		PeriodoVencimiento = periodoVencimiento;
+	}
+
+	public float getCostoOportunidad() {
+		return CostoOportunidad;
+	}
+
+	public void setCostoOportunidad(float costoOportunidad) {
+		CostoOportunidad = costoOportunidad;
+	}
+
+	public float getTasaNegociacion() {
+		return TasaNegociacion;
+	}
+
+	public void setTasaNegociacion(float tasaNegociacion) {
+		TasaNegociacion = tasaNegociacion;
 	}
 
 	public Usuario getUsuario() {
