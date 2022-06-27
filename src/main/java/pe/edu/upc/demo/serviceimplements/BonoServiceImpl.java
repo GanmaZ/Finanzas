@@ -52,27 +52,28 @@ public class BonoServiceImpl implements IBonoService {
 
 			float tasacuponsem = (bono.getTasaCupon() / 100) / 2;
 			int periodsem = (int) bono.getVencimiento() * 2;
-			float flujo[][] = new float[5][periodsem];
-			double flucaja[] = new double[periodsem];
+			int a = periodsem + 1;
+			float flujo[][] = new float[5][a];
+			double flucaja[] = new double[a];
 			double fluvan[] = new double[periodsem];
-			int aux = 1;
+			int aux = 0;
 
 			for (int i = 0; i < 5; i++) {
-				for (int j = 0; j < periodsem; j++) {
+				for (int j = 0; j < a; j++) {
 					if (i == 0) {
 						flujo[i][j] = aux;
 						aux++;
 					} else if (i == 1) {
 						flujo[i][j] = bono.getValorNominal();
 
-						if (j == (periodsem - 1)) {
+						if (j == (a - 1)) {
 							flujo[i][j] = 0;
 						}
 
-					} else if (i == 2 && j > 0 && j < (periodsem - 1)) {
+					} else if (i == 2 && j > 0 && j < (a - 1)) {
 						flujo[i][j] = 0;
 
-					} else if (i == 2 && j == (periodsem - 1)) {
+					} else if (i == 2 && j == (a - 1)) {
 						flujo[i][j] = bono.getValorNominal();
 
 					} else if (i == 3 && j > 0) {
@@ -83,21 +84,21 @@ public class BonoServiceImpl implements IBonoService {
 						flucaja[j] = -bono.getValorNominal();
 						fluvan[j] = bono.getValorNominal() * tasacuponsem;
 
-					} else if (i == 4 && j > 0 && j < (periodsem - 1)) {
+					} else if (i == 4 && j > 0 && j < (a - 1)) {
 						flujo[i][j] = bono.getValorNominal() * tasacuponsem;
 						flucaja[j] = bono.getValorNominal() * tasacuponsem;
-						fluvan[j] = bono.getValorNominal() * tasacuponsem;
+						fluvan[j - 1] = bono.getValorNominal() * tasacuponsem;
 
-					} else if (i == 4 && j == (periodsem - 1)) {
+					} else if (i == 4 && j == (a - 1)) {
 						flujo[i][j] = (bono.getValorNominal() * tasacuponsem) + bono.getValorNominal();
 						flucaja[j] = (bono.getValorNominal() * tasacuponsem) + bono.getValorNominal();
-						fluvan[j] = (bono.getValorNominal() * tasacuponsem) + bono.getValorNominal();
+						fluvan[j - 1] = (bono.getValorNominal() * tasacuponsem) + bono.getValorNominal();
 					}
 
 				}
 			}
 
-			for (int j = 0; j < periodsem; j++) {
+			for (int j = 0; j < a; j++) {
 
 				Flujo flu = new Flujo();
 				flu.setPeriodo((int) flujo[0][j]);
@@ -115,42 +116,38 @@ public class BonoServiceImpl implements IBonoService {
 			double r = bono.getCostoOportunidad() / 100;
 			double d = (FinanceLib.npv(r, fluvan)) - (bono.getValorNominal());
 			double ir = Precision.round((Irr.irr(flucaja) * 100), 2);
-
 			d = Precision.round(d, 2);
-			System.out.println(d);
 
 			va.setTir(ir);
 			va.setBono(bono);
 			va.setVan(d);
 			vRepository.save(va);
-			
-			
-			
 
 		} else if ("mensual".equals(bono.getPeriodoPago())) {
 			float tasacuponmen = (bono.getTasaCupon() / 100) / 12;
 			int periodmen = (int) bono.getVencimiento() * 12;
-			float flujo[][] = new float[5][periodmen];
-			double flucaja[] = new double[periodmen];
-			double fluvan[] = new double[periodmen - 1];
-			int aux = 1;
+			int a = periodmen + 1;
+			float flujo[][] = new float[5][a];
+			double flucaja[] = new double[a];
+			double fluvan[] = new double[periodmen];
+			int aux = 0;
 
 			for (int i = 0; i < 5; i++) {
-				for (int j = 0; j < periodmen; j++) {
+				for (int j = 0; j < a; j++) {
 					if (i == 0) {
 						flujo[i][j] = aux;
 						aux++;
 					} else if (i == 1) {
 						flujo[i][j] = bono.getValorNominal();
 
-						if (j == (periodmen - 1)) {
+						if (j == (a - 1)) {
 							flujo[i][j] = 0;
 						}
 
-					} else if (i == 2 && j > 0 && j < (periodmen - 1)) {
+					} else if (i == 2 && j > 0 && j < (a - 1)) {
 						flujo[i][j] = 0;
 
-					} else if (i == 2 && j == (periodmen - 1)) {
+					} else if (i == 2 && j == (a - 1)) {
 						flujo[i][j] = bono.getValorNominal();
 
 					} else if (i == 3 && j > 0) {
@@ -161,20 +158,20 @@ public class BonoServiceImpl implements IBonoService {
 						flucaja[j] = -bono.getValorNominal();
 						fluvan[j] = bono.getValorNominal() * tasacuponmen;
 
-					} else if (i == 4 && j > 0 && j < (periodmen - 1)) {
+					} else if (i == 4 && j > 0 && j < (a - 1)) {
 						flujo[i][j] = bono.getValorNominal() * tasacuponmen;
 						flucaja[j] = bono.getValorNominal() * tasacuponmen;
-						fluvan[j] = bono.getValorNominal() * tasacuponmen;
+						fluvan[j - 1] = bono.getValorNominal() * tasacuponmen;
 
-					} else if (i == 4 && j == (periodmen - 1)) {
+					} else if (i == 4 && j == (a - 1)) {
 						flujo[i][j] = (bono.getValorNominal() * tasacuponmen) + bono.getValorNominal();
 						flucaja[j] = (bono.getValorNominal() * tasacuponmen) + bono.getValorNominal();
-						fluvan[j] = (bono.getValorNominal() * tasacuponmen) + bono.getValorNominal();
+						fluvan[j - 1] = (bono.getValorNominal() * tasacuponmen) + bono.getValorNominal();
 					}
 
 				}
 			}
-			for (int j = 0; j < periodmen; j++) {
+			for (int j = 0; j < a; j++) {
 
 				Flujo flu = new Flujo();
 				flu.setPeriodo((int) flujo[0][j]);
@@ -192,9 +189,7 @@ public class BonoServiceImpl implements IBonoService {
 			double r = bono.getCostoOportunidad() / 100;
 			double d = (FinanceLib.npv(r, fluvan)) - (bono.getValorNominal());
 			double ir = Precision.round((Irr.irr(flucaja) * 100), 2);
-
 			d = Precision.round(d, 2);
-			System.out.println(d);
 
 			va.setTir(ir);
 			va.setBono(bono);
@@ -202,13 +197,14 @@ public class BonoServiceImpl implements IBonoService {
 			vRepository.save(va);
 
 		} else {
-			float flujo[][] = new float[5][(int) bono.getVencimiento()];
-			double flucaja[] = new double[(int) bono.getVencimiento()];
-			double fluvan[] = new double[(int) bono.getVencimiento() - 1];
-			int aux = 1;
+			int a = (int) bono.getVencimiento() + 1;
+			float flujo[][] = new float[5][a];
+			double flucaja[] = new double[a];
+			double fluvan[] = new double[(int) bono.getVencimiento()];
+			int aux = 0;
 
 			for (int i = 0; i < 5; i++) {
-				for (int j = 0; j < bono.getVencimiento(); j++) {
+				for (int j = 0; j < a; j++) {
 					if (i == 0) {
 						flujo[i][j] = aux;
 						aux++;
@@ -219,10 +215,10 @@ public class BonoServiceImpl implements IBonoService {
 							flujo[i][j] = 0;
 						}
 
-					} else if (i == 2 && j > 0 && j < (bono.getVencimiento() - 1)) {
+					} else if (i == 2 && j > 0 && j < a - 1) {
 						flujo[i][j] = 0;
 
-					} else if (i == 2 && j == (bono.getVencimiento() - 1)) {
+					} else if (i == 2 && j == a - 1) {
 						flujo[i][j] = bono.getValorNominal();
 
 					} else if (i == 3 && j > 0) {
@@ -233,20 +229,20 @@ public class BonoServiceImpl implements IBonoService {
 						flucaja[j] = -bono.getValorNominal();
 						fluvan[j] = bono.getValorNominal() * (bono.getTasaCupon() / 100);
 
-					} else if (i == 4 && j > 0 && j < (bono.getVencimiento() - 1)) {
+					} else if (i == 4 && j > 0 && j < a - 1) {
 						flujo[i][j] = bono.getValorNominal() * (bono.getTasaCupon() / 100);
 						flucaja[j] = bono.getValorNominal() * (bono.getTasaCupon() / 100);
-						fluvan[j] = bono.getValorNominal() * (bono.getTasaCupon() / 100);
+						fluvan[j - 1] = bono.getValorNominal() * (bono.getTasaCupon() / 100);
 
-					} else if (i == 4 && j == (bono.getVencimiento() - 1)) {
+					} else if (i == 4 && j == a - 1) {
 						flujo[i][j] = (bono.getValorNominal() * (bono.getTasaCupon() / 100)) + bono.getValorNominal();
 						flucaja[j] = (bono.getValorNominal() * (bono.getTasaCupon() / 100)) + bono.getValorNominal();
-						fluvan[j] = (bono.getValorNominal() * (bono.getTasaCupon() / 100)) + bono.getValorNominal();
+						fluvan[j - 1] = (bono.getValorNominal() * (bono.getTasaCupon() / 100)) + bono.getValorNominal();
 					}
 
 				}
 			}
-			for (int j = 0; j < bono.getVencimiento(); j++) {
+			for (int j = 0; j < a; j++) {
 
 				Flujo flu = new Flujo();
 				flu.setPeriodo((int) flujo[0][j]);
@@ -263,9 +259,7 @@ public class BonoServiceImpl implements IBonoService {
 			double r = bono.getCostoOportunidad() / 100;
 			double d = (FinanceLib.npv(r, fluvan)) - (bono.getValorNominal());
 			double ir = Precision.round((Irr.irr(flucaja) * 100), 2);
-
 			d = Precision.round(d, 2);
-			System.out.println(d);
 
 			va.setTir(ir);
 			va.setBono(bono);
