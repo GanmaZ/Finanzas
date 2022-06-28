@@ -23,11 +23,17 @@ public class Bono {
 	@Column(name = "ValorNominal", nullable = false)
 	private float ValorNominal;
 
+	@Column(name = "TipoMoneda", nullable = false)
+	private String TipoMoneda;
+
 	@Column(name = "TasaCupon", nullable = false)
 	private float TasaCupon;
 
 	@Column(name = "PeriodoTasaCupon", nullable = false)
 	private String PeriodoTasaCupon;
+
+	@Column(name = "TipoTasa", nullable = false)
+	private String TipoTasa;
 
 	@Column(name = "PeriodoPago", nullable = false)
 	private String PeriodoPago;
@@ -53,15 +59,17 @@ public class Bono {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bono(int idBono, String nombreBono, float valorNominal, float tasaCupon, String periodoTasaCupon,
-			String periodoPago, float vencimiento, String periodoVencimiento, float costoOportunidad,
-			float tasaNegociacion, Usuario usuario) {
+	public Bono(int idBono, String nombreBono, float valorNominal, String tipoMoneda, float tasaCupon,
+			String periodoTasaCupon, String tipoTasa, String periodoPago, float vencimiento, String periodoVencimiento,
+			float costoOportunidad, float tasaNegociacion, Usuario usuario) {
 		super();
 		this.IdBono = idBono;
 		this.NombreBono = nombreBono;
 		this.ValorNominal = valorNominal;
+		this.TipoMoneda = tipoMoneda;
 		this.TasaCupon = tasaCupon;
 		this.PeriodoTasaCupon = periodoTasaCupon;
+		this.TipoTasa = tipoTasa;
 		this.PeriodoPago = periodoPago;
 		this.Vencimiento = vencimiento;
 		this.PeriodoVencimiento = periodoVencimiento;
@@ -94,6 +102,14 @@ public class Bono {
 		ValorNominal = valorNominal;
 	}
 
+	public String getTipoMoneda() {
+		return TipoMoneda;
+	}
+
+	public void setTipoMoneda(String tipoMoneda) {
+		TipoMoneda = tipoMoneda;
+	}
+
 	public float getTasaCupon() {
 		return TasaCupon;
 	}
@@ -108,6 +124,14 @@ public class Bono {
 
 	public void setPeriodoTasaCupon(String periodoTasaCupon) {
 		PeriodoTasaCupon = periodoTasaCupon;
+	}
+
+	public String getTipoTasa() {
+		return TipoTasa;
+	}
+
+	public void setTipoTasa(String tipoTasa) {
+		TipoTasa = tipoTasa;
 	}
 
 	public String getPeriodoPago() {

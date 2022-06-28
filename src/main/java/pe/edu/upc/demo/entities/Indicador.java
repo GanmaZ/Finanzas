@@ -15,7 +15,7 @@ public class Indicador {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private double IdIndicador;
+	private int IdIndicador;
 
 	@Column(name = "Precio", nullable = false)
 	private double Precio;
@@ -35,7 +35,7 @@ public class Indicador {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Indicador(double idIndicador, double precio, double duracion, double duracionModificada, double convexidad,
+	public Indicador(int idIndicador, double precio, double duracion, double duracionModificada, double convexidad,
 			Bono bono) {
 		super();
 		this.IdIndicador = idIndicador;
@@ -46,11 +46,11 @@ public class Indicador {
 		this.bono = bono;
 	}
 
-	public double getIdIndicador() {
+	public int getIdIndicador() {
 		return IdIndicador;
 	}
 
-	public void setIdIndicador(double idIndicador) {
+	public void setIdIndicador(int idIndicador) {
 		IdIndicador = idIndicador;
 	}
 

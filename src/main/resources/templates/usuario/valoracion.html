@@ -20,12 +20,21 @@
 					placeholder="Nombre de su bono" required="required"></input>
 			</div>
 
-			<div class="col-sm-2">
-				<label class="form-label">Valor Nominal:</label> <input
-					type="number" th:field="*{ValorNominal}" class="form-control"
-					placeholder="Digite el Valor Nominal del bono" required="required"></input>
+			<div class="row">
+				<div class="col-sm-2">
+					<label class="form-label">Valor Nominal:</label> <input
+						type="number" th:field="*{ValorNominal}" class="form-control"
+						placeholder="Digite el Valor Nominal del bono" required="required"></input>
+				</div>
+				<div class="col-sm-2">
+					<label class="form-label">Tipo de moneda:</label> <select
+						name="selectType" class="form-control" th:field="*{TipoMoneda}">
+						<option value="soles" selected>Soles</option>
+						<option value="dolares" selected>Dolares</option>
+						<option value="euros" selected>Euros</option>
+					</select>
+				</div>
 			</div>
-
 
 			<div class="row">
 				<div class="col-sm-2">
@@ -44,6 +53,13 @@
 						name="selectType" class="form-control"
 						th:field="*{PeriodoTasaCupon}">
 						<option value="Anual" selected>Anual</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<label class="form-label">Tipo de tasa:</label> <select
+						name="selectType" class="form-control" th:field="*{TipoTasa}">
+						<option value="efectiva" selected>Efectiva</option>
+						<option value="nominal" selected>Nominal</option>
 					</select>
 				</div>
 			</div>
