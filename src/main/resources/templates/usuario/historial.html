@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Historial de Bonos</title>
+</head>
+<body background="/images/banner-img.jpg">
+	<header th:replace="master/master :: header"></header>
+	<br>
+	<div>
+		<h1 align="center">Historial de Bonos</h1>
+	</div>
+	<br>
+	<div class="container text-center">
+		<table class="table table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">ValorNominal</th>
+					<th scope="col">TasaCupon(%)</th>
+					<th scope="col">PeriodoPago</th>
+					<th scope="col">Vencimiento(Años)</th>
+					<th scope="col">Costo de Oportunidad(%)</th>
+					<th scope="col">Tasa de Negociacion(%)</th>
+					<th scope="col">Operacion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bon: ${listaBonos}">
+					<td th:text="${bon.NombreBono}"></td>
+					<td><a th:text="${bon.ValorNominal}"></a>&nbsp;<a
+						th:text="${bon.TipoMoneda}"></a></td>
+					<td><a th:text="${bon.TasaCupon}"></a>&nbsp;<a
+						th:text="${bon.PeriodoTasaCupon}"></a></td>
+					<td th:text="${bon.PeriodoPago}"></td>
+					<td th:text="${bon.Vencimiento}"></td>
+					<td th:text="${bon.CostoOportunidad}"></td>
+					<td th:text="${bon.TasaNegociacion}"></td>
+					<td><a class="btn btn-primary"
+						th:href="@{'/bonos/detalles/' + ${bon.IdBono}}">Detalles</a>
+						&nbsp; <a class="btn btn-danger"
+						th:href="@{'/bonos/eliminar/' + ${bon.IdBono}}">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

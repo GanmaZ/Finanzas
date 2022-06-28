@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="master/master :: head">
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Inicio</title>
 </head>
-<body>
-	<h1>hola funciona?</h1>
-
+<body background="/images/banner-img.jpg">
+	<header th:replace="master/master :: header"></header>
+	<br>
 	<div>
-		<form th:action="@{/logout}" method="post">
-			<button class="button" type="submit">Cerrar sesion</button>
-		</form>
+		<h1 align="center">Bienvenido</h1>
 	</div>
 </body>
 </html>

@@ -21,15 +21,15 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int IdUsuario;
 
-	@Column(name = "usuario", nullable = false, length = 60)
-	private String usuario;
+	@Column(name = "userName", nullable = false, length = 60)
+	private String userName;
 
-	@Column(name = "password", nullable = false, length = 60)
+	@Column(name = "password", nullable = false, length = 500)
 	private String password;
-	
+
 	@Column(name = "email", nullable = false, length = 60)
 	private String email;
-	
+
 	@Column(name = "nombres", nullable = false, length = 60)
 	private String nombres;
 
@@ -41,14 +41,14 @@ public class Usuario {
 
 	public Usuario() {
 		super();
-		//TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(int idUsuario, String usuario, String password, String email, String nombres, Boolean enabled,
+	public Usuario(int idUsuario, String userName, String password, String email, String nombres, Boolean enabled,
 			List<Role> roles) {
 		super();
 		this.IdUsuario = idUsuario;
-		this.usuario = usuario;
+		this.userName = userName;
 		this.password = password;
 		this.email = email;
 		this.nombres = nombres;
@@ -64,12 +64,12 @@ public class Usuario {
 		IdUsuario = idUsuario;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -112,6 +112,4 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-	
-	
 }

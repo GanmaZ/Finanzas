@@ -29,14 +29,14 @@ public class UsuarioController {
 	public String newUsuario(Model model) {
 		model.addAttribute("usuario", new Usuario());
 
-		return "/usuario/frmRegistro";
+		return "/usuario/registro";
 	}
 
 	@PostMapping("/guardar")
 	public String saveUsuario(@Valid Usuario objUsuario, BindingResult binRes) {
 
 		if (binRes.hasErrors()) {
-			return "/usuario/frmRegistro";
+			return "/usuario/registro";
 		} else {
 			uService.insert(objUsuario);
 			return "redirect:/login";
