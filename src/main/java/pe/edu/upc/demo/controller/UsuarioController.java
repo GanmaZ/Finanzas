@@ -22,14 +22,14 @@ public class UsuarioController {
 
 	@RequestMapping("/inicio")
 	public String paginicio() {
-		return "/usuario/inicio";
+		return "usuario/inicio";
 	}
 	
 	@GetMapping("/nuevo")
 	public String newUsuario(Model model) {
 		model.addAttribute("usuario", new Usuario());
 
-		return "/usuario/registro";
+		return "usuario/registro";
 	}
 
 	@PostMapping("/guardar")
